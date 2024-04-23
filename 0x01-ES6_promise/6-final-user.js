@@ -9,5 +9,5 @@ export default async function handleProfileSignup(firstName, lastName, fileName)
         status: out.status, 
         value: out.status === 'fulfilled' ? out.value : String(out.reason),
       }))
-    });
+    ));
 }
