@@ -6,8 +6,9 @@ export default async function handleProfileSignup(firstName, lastName, fileName)
     .allSettled([signUpUser(firstName, lastName), uploadPhoto(fileName)])
     .then((res) => (
       res.map((out) => ({
-        status: out.status, 
+        status: out.status,
         value: out.status === 'fulfilled' ? out.value : String(out.reason),
       }))
     ));
 }
+
