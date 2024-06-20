@@ -3,27 +3,27 @@ const { expect } = require('chai');
 const sendPaymentRequestToApi = require('./5-payment');
 
 describe('sendPaymentRequestToApi', () => {
-  let spy;
+  let consolespy;
 
   beforeEach(() => {
-    if (!spy) {
-      spy = sinon.spy(console);
+    if (!consolespy) {
+      consolespy = sinon.spy(console, 'log');
     }
   });
 
   afterEach(() => {
-    spy.log.resetHistory();
+    consolespy.log.resetHistory();
   });
 
-  it('log of sendPaymentRequestToApi(100, 20)', () => {
+  it('sendPaymentRequestToApi(100, 20) shows "The total is: 120"', () => {
     sendPaymentRequestToApi(100, 20);
-    expect(bigBrother.log.calledWith('The total is: 120')).to.be.true;
-    expect(bigBrother.log.calledOnce).to.be.true;
+    expect(consolespy.log.calledWith('The total is: 120')).to.be.true;
+    expect(consolespy.log.calledOnce).to.be.true;
   });
 
-  it('log of sendPaymentRequestToApi(10, 10)', () => {
+  it('sendPaymentRequestToApi(10, 10) shows "The total is: 20"', () => {
     sendPaymentRequestToApi(10, 10);
-    expect(bigBrother.log.calledWith('The total is: 20')).to.be.true;
-    expect(bigBrother.log.calledOnce).to.be.true;
+    expect(consolespy.log.calledWith('The total is: 20')).to.be.true;
+    expect(consolespy.log.calledOnce).to.be.true;
   });
 });
